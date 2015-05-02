@@ -6,7 +6,7 @@ $(document).ready(function () {
   generateGrid();
 
   //Paint
-  $(".grid-cell").on('mouseenter', function(){
+  $(document).on('mouseenter',".grid-cell", function(){
     activeColor = $('input[name=active-color]:checked','#selections').val();
     $(this).css({"background-color": activeColor});
   });
