@@ -9,6 +9,17 @@
   <body>
     <div id="toolbar">
       <div id="collapse">X</div>
+      <form id="selections">
+        <ul>
+          <li style="color:black;font-weight:bold;"><input type="radio" name="active-color" value="black" checked>Black</li>
+          <li style="color:white;font-weight:bold;"><input type="radio" name="active-color" value="white">White</li>
+          <li style="color:red;font-weight:bold;"><input type="radio" name="active-color" value="red">Red</li>
+          <li style="color:green;font-weight:bold;"><input type="radio" name="active-color" value="green">Green</li>
+          <li style="color:blue;font-weight:bold;"><input type="radio" name="active-color" value="blue">Blue</li>
+          <li style="color:yellow;font-weight:bold;"><input type="radio" name="active-color" value="yellow">Yellow</li>
+        </ul>
+        <input type="checkbox" id="grid-on" checked>Grid
+      </form>
       <div id="cell-size-box">
         <input type="number" id="cell-size" value="16" min="1" max="48" style="width:40px; display:inline-block;"/>
         <div id="size-button">Enter</div>

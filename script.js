@@ -1,11 +1,14 @@
 var GRID_DIM = 960; //Const - size of grid
+var activeColor = "black";
+var gridState = true;
 
 $(document).ready(function () {
   generateGrid();
 
   //Paint
   $(".grid-cell").on('mouseenter', function(){
-    $(this).css({"background-color":"black"});
+    activeColor = $('input[name=active-color]:checked','#selections').val();
+    $(this).css({"background-color": activeColor});
   });
   //Open-close toolbar
   $("#toolbar").on('click','#collapse', function(){
@@ -18,16 +21,22 @@ $(document).ready(function () {
   });
   //Resize Grid
   $("#toolbar").on('click','#size-button', generateGrid);
-  
-  
-                  
+  //Set grid
+  $('#grid-on').on('click',function(){
+    if (gridState === true){
+      $('.grid-cell').css({"border":"1px solid transparent"});
+      gridState = false;
+    }else{
+      $('.grid-cell').css({"border":"1px solid black"});
+      gridState = true;
+    }
+  });              
 });
 
 function generateGrid() { 
   var gridTable = $('#grid-frame');
   var dim = $('#cell-size').val();
-  if (validation(dim) === true){
-    
+  if (validation(dim)){
     gridTable.find(".row").remove();
     var cellSize = (GRID_DIM / dim) - 2;
     for (var i = 0; i < dim; i += 1) {
