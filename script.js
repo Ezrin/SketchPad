@@ -4,19 +4,39 @@ var gridState = true;
 
 $(document).ready(function () {
   generateGrid();
-
+  //Detect key state
+  var keyDown = false;
+  $(window).keydown(function(evt){
+    if (evt.which == 90){
+      keyDown = true;
+      $('#draw-button').css({"background-color":"#33f",
+                            "border":"2px solid #777"});
+    }
+  }).keyup(function(evt){
+    if (evt.which == 90) {
+      keyDown = false;
+      $('#draw-button').css({"background-color":"#009",
+                            "border":"2px solid #333"});
+    }
+  });
   //Paint
   $(document).on('mouseenter',".grid-cell", function(){
-    activeColor = $('input[name=active-color]:checked','#selections').val();
-    $(this).css({"background-color": activeColor});
+    if (keyDown){
+      activeColor = $('input[name=active-color]:checked','#selections').val();
+      $(this).css({"background-color": activeColor});
+    }
   });
   //Open-close toolbar
   $("#toolbar").on('click','#collapse', function(){
     var toolBar = $(this).closest("#toolbar");
     if (toolBar.hasClass("toolbar-hidden")) {
       toolBar.removeClass("toolbar-hidden");
+      $('#collapse').css({"background-color":"#f00",
+                        "border":"2px solid #777"});
     }else{
       toolBar.addClass("toolbar-hidden"); 
+      $('#collapse').css({"background-color":"#900",
+                        "border":"2px solid #333"});
     }
   });
   //Resize Grid
